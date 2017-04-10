@@ -27,7 +27,6 @@
             android:layout_marginTop="@dimen/min_margin"
             android:layout_toRightOf="@+id/poster"
             android:gravity="center"
-            android:text="Beauty and the Beast"
             android:textColor="@color/white"
             android:textSize="@dimen/title_size" />
 
@@ -37,7 +36,6 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/title"
             android:layout_toRightOf="@+id/poster"
-            android:text="Released:"
             android:textColor="@color/white"
             android:textSize="@dimen/date_size" />
 
@@ -50,7 +48,6 @@
             android:layout_below="@+id/title"
             android:layout_toRightOf="@+id/release_date_label"
             android:gravity="right"
-            android:text="2017-03-16"
             android:textColor="@color/white"
             android:textSize="@dimen/date_size" />
 
@@ -61,7 +58,6 @@
             android:layout_below="@+id/release_date"
             android:layout_toRightOf="@+id/poster"
             android:gravity="right"
-            android:text="User Score:"
             android:textColor="@color/white"
             android:textSize="@dimen/date_size" />
 
@@ -80,7 +76,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="7.0"
                 android:textColor="@color/white"
                 android:textSize="@dimen/vote_size" />
 
