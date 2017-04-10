@@ -26,4 +26,7 @@ public class Constants {
     public static final String POPULAR_PATH = "movie/popular";
 
     public static final String TOP_RATED_PATH = "movie/top_rated";
+
+    public static final String LIST_STATE_KEY = "list_key";
+    public static final String LIST_VALUES_KEY = "list_values";
 }

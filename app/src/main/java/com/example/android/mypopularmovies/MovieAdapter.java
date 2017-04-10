@@ -9,6 +9,7 @@ import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,11 +18,11 @@ import java.util.List;
 
 public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private List<Movie> mData;
+    private ArrayList<Movie> mData;
     private Context mContext;
     private ItemClickListener mClickListener;
 
-    public MovieAdapter(Context context, List<Movie> data) {
+    public MovieAdapter(Context context, ArrayList<Movie> data) {
         this.mData = data;
         this.mContext = context;
     }
@@ -58,6 +59,10 @@ public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         return null;
     }
 
+    public ArrayList<Movie> getItens() {
+        return mData;
+    }
+
     public class ViewHolderMovie extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public ImageView poster;
@@ -83,7 +88,7 @@ public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         void onItemClick(View view, int position);
     }
 
-    public void setData(List<Movie> mData) {
+    public void setData(ArrayList<Movie> mData) {
         this.mData = mData;
         notifyDataSetChanged();
     }

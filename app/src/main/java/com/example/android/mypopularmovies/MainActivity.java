@@ -1,9 +1,11 @@
 package com.example.android.mypopularmovies;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -23,9 +25,11 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Item
 
     private Handler mHandler;
 
+    private Parcelable mListState;
+
     private String mCurrentPath;
 
-    private List<Movie> mData;
+    private ArrayList<Movie> mData;
 
     private RecyclerView mRecyclerView;
     private GridLayoutManager mLayoutManager;
@@ -46,7 +50,11 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Item
         mProgressBar.getIndeterminateDrawable().setColorFilter(0xFFcc0000, android.graphics.PorterDuff.Mode.MULTIPLY);
         mRecyclerView = (RecyclerView) findViewById(R.id.list_movies);
 
-        mLayoutManager = new GridLayoutManager(this, 2);
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            mLayoutManager = new GridLayoutManager(this, 2);
+        } else {
+            mLayoutManager = new GridLayoutManager(this, 3);
+        }
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.getLayoutManager().setAutoMeasureEnabled(true);
 
@@ -74,8 +82,6 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Item
         mRecyclerView.setAdapter(mMovieAdapter);
 
         mCurrentPath = Constants.POPULAR_PATH;
-
-        new MoviesTask().execute(mCurrentPath, "1");
     }
 
     @Override
@@ -105,6 +111,34 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Item
                 break;
         }
         return true;
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        mListState = mLayoutManager.onSaveInstanceState();
+        outState.putParcelable(Constants.LIST_STATE_KEY, mListState);
+        outState.putParcelableArrayList(Constants.LIST_VALUES_KEY, mMovieAdapter.getItens());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        if (savedInstanceState != null) {
+            mListState = savedInstanceState.getParcelable(Constants.LIST_STATE_KEY);
+            mData = savedInstanceState.getParcelableArrayList(Constants.LIST_VALUES_KEY);
+            mMovieAdapter.setData(mData);
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (mListState != null) {
+            mLayoutManager.onRestoreInstanceState(mListState);
+        } else {
+            new MoviesTask().execute(mCurrentPath, "1");
+        }
     }
 
     private void loadMoreMovies(int page) {
