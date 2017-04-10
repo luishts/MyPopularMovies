@@ -1,6 +1,6 @@
-package com.example.android.mypopularmovies;
+package com.example.android.mypopularmovies.util;
 
-import android.content.Context;
+import com.example.android.mypopularmovies.model.Movie;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -16,7 +16,7 @@ import java.util.List;
 public class JsonMoviesUtil {
 
 
-    public static List<Movie> getMoviesStringsFromJson(Context context, String moviesJsonStr)
+    public static List<Movie> getMoviesStringsFromJson(String moviesJsonStr)
             throws JSONException {
 
         /* String array to hold each day's weather String */
@@ -27,7 +27,7 @@ public class JsonMoviesUtil {
         JSONArray items = movieJson.getJSONArray("results");
 
         JSONObject movieObj;
-        for (int i=0; i<items.length(); i++){
+        for (int i = 0; i < items.length(); i++) {
             movieObj = items.getJSONObject(i);
             Movie movie = new Movie();
             movie.setId(movieObj.getInt("id"));

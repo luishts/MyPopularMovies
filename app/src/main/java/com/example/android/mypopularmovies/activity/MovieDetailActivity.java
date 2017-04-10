@@ -1,4 +1,4 @@
-package com.example.android.mypopularmovies;
+package com.example.android.mypopularmovies.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -6,6 +6,9 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.android.mypopularmovies.R;
+import com.example.android.mypopularmovies.model.Movie;
+import com.example.android.mypopularmovies.util.Constants;
 import com.squareup.picasso.Picasso;
 
 public class MovieDetailActivity extends AppCompatActivity {
@@ -31,6 +34,7 @@ public class MovieDetailActivity extends AppCompatActivity {
         }
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(getString(R.string.detail_title));
     }
 
     private void initUI(Movie movie) {

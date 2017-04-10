@@ -1,4 +1,4 @@
-package com.example.android.mypopularmovies;
+package com.example.android.mypopularmovies.activity;
 
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -6,6 +6,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,6 +16,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
+
+import com.example.android.mypopularmovies.R;
+import com.example.android.mypopularmovies.adapter.EndlessRecyclerViewScrollListener;
+import com.example.android.mypopularmovies.adapter.MovieAdapter;
+import com.example.android.mypopularmovies.model.Movie;
+import com.example.android.mypopularmovies.util.Constants;
+import com.example.android.mypopularmovies.util.JsonMoviesUtil;
+import com.example.android.mypopularmovies.util.NetworkUtils;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -47,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Item
 
         mData = new ArrayList<>();
         mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
-        mProgressBar.getIndeterminateDrawable().setColorFilter(0xFFcc0000, android.graphics.PorterDuff.Mode.MULTIPLY);
+        DrawableCompat.setTint(mProgressBar.getIndeterminateDrawable(), ContextCompat.getColor(this, R.color.colorAccent));
         mRecyclerView = (RecyclerView) findViewById(R.id.list_movies);
 
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
@@ -66,6 +76,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Item
                     Log.d(TAG, "all movies are already loaded. totalItemCount = " + totalItemCount + " MAX_MOVIES_PER_PAGE * page = " + (Constants.MAX_MOVIES_PER_PAGE * page));
                     return;
                 } else {
+                    mProgressBar.setVisibility(View.VISIBLE);
                     mHandler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -82,6 +93,10 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Item
         mRecyclerView.setAdapter(mMovieAdapter);
 
         mCurrentPath = Constants.POPULAR_PATH;
+
+        getSupportActionBar().setTitle(getString(R.string.main_title));
+
+        mProgressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -158,7 +173,6 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Item
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            mProgressBar.setVisibility(View.VISIBLE);
         }
 
         @Override
@@ -175,7 +189,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Item
 
             try {
                 String jsonMoviesResponse = NetworkUtils.getResponseFromHttpUrl(moviesUrl);
-                return JsonMoviesUtil.getMoviesStringsFromJson(MainActivity.this, jsonMoviesResponse);
+                return JsonMoviesUtil.getMoviesStringsFromJson(jsonMoviesResponse);
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -185,8 +199,8 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Item
 
         @Override
         protected void onPostExecute(List<Movie> movies) {
-            mProgressBar.setVisibility(View.GONE);
             mMovieAdapter.setMoreMovies(movies);
+            mProgressBar.setVisibility(View.GONE);
         }
     }
 }

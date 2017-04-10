@@ -1,4 +1,4 @@
-package com.example.android.mypopularmovies;
+package com.example.android.mypopularmovies.adapter;
 
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;

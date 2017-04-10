@@ -1,4 +1,4 @@
-package com.example.android.mypopularmovies;
+package com.example.android.mypopularmovies.util;
 
 /**
  * Created by ltorres on 10/04/2017.
@@ -8,7 +8,7 @@ public class Constants {
 
     public static int MAX_MOVIES_PER_PAGE = 6;
 
-    public static final long ENDLESS_SCROLL_ANIMATION_TIME = 1000;
+    public static final long ENDLESS_SCROLL_ANIMATION_TIME = 2000;
 
     public static final String MOVIE_KEY = "movie";
 
