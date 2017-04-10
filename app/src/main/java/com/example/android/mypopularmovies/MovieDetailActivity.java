@@ -2,6 +2,7 @@ package com.example.android.mypopularmovies;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -28,6 +29,8 @@ public class MovieDetailActivity extends AppCompatActivity {
             Movie movie = getIntent().getParcelableExtra(Constants.MOVIE_KEY);
             initUI(movie);
         }
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     private void initUI(Movie movie) {
@@ -36,5 +39,15 @@ public class MovieDetailActivity extends AppCompatActivity {
         mVote.setText(String.valueOf(movie.getVote_average()));
         mOverview.setText(movie.getOverview());
         Picasso.with(this).load(movie.getPoster_path()).placeholder(R.mipmap.ic_launcher).into(mPoster);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                super.onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
