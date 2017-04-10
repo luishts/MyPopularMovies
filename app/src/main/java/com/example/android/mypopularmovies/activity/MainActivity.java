@@ -95,8 +95,6 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Item
         mCurrentPath = Constants.POPULAR_PATH;
 
         getSupportActionBar().setTitle(getString(R.string.main_title));
-
-        mProgressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -152,6 +150,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Item
         if (mListState != null) {
             mLayoutManager.onRestoreInstanceState(mListState);
         } else {
+            mProgressBar.setVisibility(View.VISIBLE);
             new MoviesTask().execute(mCurrentPath, "1");
         }
     }
@@ -177,20 +176,15 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Item
 
         @Override
         protected List<Movie> doInBackground(String... params) {
-
             if (params.length == 0) {
                 return null;
             }
-
             String type = params[0];
             String page = params[1];
-
             URL moviesUrl = NetworkUtils.buildUrl(type, page);
-
             try {
                 String jsonMoviesResponse = NetworkUtils.getResponseFromHttpUrl(moviesUrl);
                 return JsonMoviesUtil.getMoviesStringsFromJson(jsonMoviesResponse);
-
             } catch (Exception e) {
                 e.printStackTrace();
                 return null;

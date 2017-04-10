@@ -14,8 +14,7 @@ public class Constants {
 
     public static String API_KEY = "1804c232904b982b461afce1f34eb2fc";
 
-    public static final String STATIC_MOVIES_URL =
-            "https://api.themoviedb.org/3";
+    public static final String STATIC_MOVIES_URL = "https://api.themoviedb.org/3";
 
     public static final String MOVIES_BASE_URL = STATIC_MOVIES_URL;
 
@@ -28,5 +27,6 @@ public class Constants {
     public static final String TOP_RATED_PATH = "movie/top_rated";
 
     public static final String LIST_STATE_KEY = "list_key";
+
     public static final String LIST_VALUES_KEY = "list_values";
 }

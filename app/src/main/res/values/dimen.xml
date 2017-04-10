@@ -4,6 +4,9 @@
     <dimen name="min_margin">8dp</dimen>
     <dimen name="title_margin">24dp</dimen>
 
+    <dimen name="poster_height">200dp</dimen>
+    <dimen name="poster_width">150dp</dimen>
+
     <dimen name="star_height">24dp</dimen>
     <dimen name="star_width">24dp</dimen>
 
@@ -11,7 +14,4 @@
     <dimen name="overview_size">24sp</dimen>
     <dimen name="vote_size">20dp</dimen>
     <dimen name="date_size">20dp</dimen>
-
-
-
 </resources>
