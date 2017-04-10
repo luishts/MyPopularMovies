@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/poster"
+        android:layout_width="200dp"
+        android:layout_height="300dp" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/poster"
+        android:paddingLeft="8dp"
+        android:paddingTop="8dp"
+        android:text="Kimi no na wa." />
+
+    <RelativeLayout
+        android:id="@+id/linear_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title"
+        android:layout_toRightOf="@+id/poster"
+        android:paddingLeft="8dp"
+        android:paddingTop="8dp">
+
+        <TextView
+            android:id="@+id/release_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="26/08/2016" />
+
+        <TextView
+            android:id="@+id/vote_average"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/star_icon"
+            android:paddingRight="8dp"
+            android:text="8.4" />
+
+        <ImageView
+            android:id="@+id/star_icon"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:src="@drawable/ic_star_rate_black_18dp" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/overview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linear_title"
+        android:layout_toRightOf="@+id/poster"
+        android:paddingLeft="8dp"
+        android:paddingTop="8dp"
+        android:text="O filme conta a história de 2 pessoas que começam a passar por experiencias aleatórias aonde um vai parar no corpo do outro por algumas horas. Ambos tentam se adaptar…" />
+
+</RelativeLayout>

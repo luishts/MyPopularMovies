@@ -18,27 +18,11 @@ public class NetworkUtils {
 
     private static final String TAG = NetworkUtils.class.getSimpleName();
 
-    private static final String STATIC_MOVIES_URL =
-            "https://www.themoviedb.org";
-
-    private static final String MOVIES_BASE_URL = STATIC_MOVIES_URL;
-
-    private static final String popular = "/movie/popular";
-
-    private static final String top_rated = "/movie/top-rated";
-
-    private static final String format = "json";
-
-    final static String FORMAT_PARAM = "mode";
-
-    final static String MOVIE_PARAM = "category";
-
-    public static URL buildUrl(String param) {
-        Uri builtUri = Uri.parse(MOVIES_BASE_URL).buildUpon()
-                .appendQueryParameter(MOVIE_PARAM, param)
-                .appendQueryParameter(FORMAT_PARAM, format)
-                .build();
-
+    public static URL buildUrl(String path, String page) {
+        Uri builtUri = Uri.parse(Constants.MOVIES_BASE_URL).buildUpon()
+                .appendEncodedPath(path)
+                .appendQueryParameter(Constants.API_PARAM, Constants.API_KEY)
+                .appendQueryParameter(Constants.PAGE_PARAM, page).build();
         URL url = null;
         try {
             url = new URL(builtUri.toString());
@@ -46,7 +30,7 @@ public class NetworkUtils {
             e.printStackTrace();
         }
 
-        Log.v(TAG, "Built URI " + url);
+        Log.d(TAG, "Built URI " + url);
 
         return url;
     }
