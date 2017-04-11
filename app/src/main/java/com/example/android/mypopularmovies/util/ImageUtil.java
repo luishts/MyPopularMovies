@@ -5,11 +5,17 @@ import android.graphics.Point;
 import android.view.Display;
 
 /**
- * Created by Luis on 10/04/2017.
+ * Class that handles movie's width and height according to device screen/resolution
  */
 
 public class ImageUtil {
 
+    /**
+     * Method that calculates movie's poster height and width according to device resolution
+     *
+     * @param activity
+     * @return
+     */
     public static int[] getPosterHeightAndWidth(Activity activity) {
         Display display = activity.getWindowManager().getDefaultDisplay();
         Point size = new Point();

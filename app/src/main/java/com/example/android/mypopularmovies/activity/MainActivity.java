@@ -59,10 +59,11 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Item
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
             mLayoutManager = new GridLayoutManager(this, 2);
         } else {
-            mLayoutManager = new GridLayoutManager(this, 3);
+            mLayoutManager = new GridLayoutManager(this, 2);
         }
         mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.getLayoutManager().setAutoMeasureEnabled(true);
+        mRecyclerView.setHasFixedSize(true);
+        //mRecyclerView.getLayoutManager().setAutoMeasureEnabled(true);
 
         mScrollListener = new EndlessRecyclerViewScrollListener(mLayoutManager) {
             @Override

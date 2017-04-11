@@ -98,9 +98,14 @@ public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         public ViewHolderMovie(View itemView) {
             super(itemView);
             poster = (ImageView) itemView.findViewById(R.id.poster);
+
             android.view.ViewGroup.LayoutParams layoutParams = poster.getLayoutParams();
-            layoutParams.width = (int) mImageWidth;
-            layoutParams.height = (int) mImageHeight;
+            layoutParams.width = mImageWidth;
+            layoutParams.height = mImageHeight;
+            poster.setLayoutParams(new ViewGroup.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+            ));
             poster.setLayoutParams(layoutParams);
             itemView.setOnClickListener(this);
         }
