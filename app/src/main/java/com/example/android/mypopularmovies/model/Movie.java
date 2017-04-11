@@ -4,30 +4,19 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
- * Created by ltorres on 10/04/2017.
+ * This class represents a Movie entity with all the fields that we need to show in the UI
  */
 
 public class Movie implements Parcelable {
 
-    private int id;
     private String title;
-    private String release_date;
-    private String poster_path;
+    private String releaseDate;
+    private String posterPath;
     private String overview;
-    private float vote_average;
-    private double popularity;
-    private boolean adult;
+    private float voteAverage;
 
     public Movie() {
 
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getTitle() {
@@ -38,20 +27,20 @@ public class Movie implements Parcelable {
         this.title = title;
     }
 
-    public String getRelease_date() {
-        return release_date;
+    public String getReleaseDate() {
+        return releaseDate;
     }
 
-    public void setRelease_date(String release_date) {
-        this.release_date = release_date;
+    public void setReleaseDate(String releaseDate) {
+        this.releaseDate = releaseDate;
     }
 
-    public String getPoster_path() {
-        return poster_path;
+    public String getPosterPath() {
+        return posterPath;
     }
 
-    public void setPoster_path(String poster_path) {
-        this.poster_path = poster_path;
+    public void setPosterPath(String posterPath) {
+        this.posterPath = posterPath;
     }
 
     public String getOverview() {
@@ -62,28 +51,12 @@ public class Movie implements Parcelable {
         this.overview = overview;
     }
 
-    public float getVote_average() {
-        return vote_average;
+    public float getVoteAverage() {
+        return voteAverage;
     }
 
-    public void setVote_average(float vote_average) {
-        this.vote_average = vote_average;
-    }
-
-    public double getPopularity() {
-        return popularity;
-    }
-
-    public void setPopularity(double popularity) {
-        this.popularity = popularity;
-    }
-
-    public boolean isAdult() {
-        return adult;
-    }
-
-    public void setAdult(boolean adult) {
-        this.adult = adult;
+    public void setVoteAverage(float voteAverage) {
+        this.voteAverage = voteAverage;
     }
 
     public static final Creator<Movie> CREATOR = new Creator<Movie>() {
@@ -104,23 +77,19 @@ public class Movie implements Parcelable {
     }
 
     protected Movie(Parcel in) {
-        id = in.readInt();
         title = in.readString();
-        release_date = in.readString();
-        poster_path = in.readString();
+        releaseDate = in.readString();
+        posterPath = in.readString();
         overview = in.readString();
-        vote_average = in.readFloat();
-        popularity = in.readDouble();
+        voteAverage = in.readFloat();
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(id);
         dest.writeString(title);
-        dest.writeString(release_date);
-        dest.writeString(poster_path);
+        dest.writeString(releaseDate);
+        dest.writeString(posterPath);
         dest.writeString(overview);
-        dest.writeFloat(vote_average);
-        dest.writeDouble(popularity);
+        dest.writeFloat(voteAverage);
     }
 }

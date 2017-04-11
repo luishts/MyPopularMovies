@@ -5,20 +5,21 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 /**
- * Created by Luis on 23/01/2017.
+ * This is the adapter that check when is time to ask more items to movie server. It has a threshold and when the last visible item + the threshold are bigger than
+ * total items available, is send a request to MainActivity in order to request more movies.
  */
 
 public abstract class EndlessRecyclerViewScrollListener extends RecyclerView.OnScrollListener {
 
-    private int visibleThreshold;
+    private int mVisibleThreshold;
 
-    private int currentPage = 0;
+    private int mCurrentPage = 0;
 
-    private int previousTotalItemCount = 0;
+    private int mPreviousTotalItemCount = 0;
 
-    private boolean loading = true;
+    private boolean mLoading = true;
 
-    private int startingPageIndex = 0;
+    private int mStartingPageIndex = 0;
 
     private RecyclerView.LayoutManager mLayoutManager;
 
@@ -35,35 +36,43 @@ public abstract class EndlessRecyclerViewScrollListener extends RecyclerView.OnS
         totalItemCount = mLayoutManager.getItemCount();
         lastVisibleItemPosition = ((GridLayoutManager) mLayoutManager).findLastVisibleItemPosition();
 
-        if (totalItemCount < previousTotalItemCount) {
-            this.currentPage = this.startingPageIndex;
-            this.previousTotalItemCount = totalItemCount;
+        if (totalItemCount < mPreviousTotalItemCount) {
+            mCurrentPage = mStartingPageIndex;
+            mPreviousTotalItemCount = totalItemCount;
             if (totalItemCount == 0) {
-                this.loading = true;
+                this.mLoading = true;
             }
         }
 
-        if (loading && (totalItemCount > previousTotalItemCount)) {
-            loading = false;
-            previousTotalItemCount = totalItemCount;
+        if (mLoading && (totalItemCount > mPreviousTotalItemCount)) {
+            mLoading = false;
+            mPreviousTotalItemCount = totalItemCount;
         }
 
-        if (!loading && (lastVisibleItemPosition + visibleThreshold) > totalItemCount) {
-            currentPage++;
-            onLoadMore(currentPage, totalItemCount);
-            loading = true;
+        if (!mLoading && (lastVisibleItemPosition + mVisibleThreshold) > totalItemCount) {
+            mCurrentPage++;
+            onLoadMore(mCurrentPage, totalItemCount);
+            mLoading = true;
         }
     }
 
+    /**
+     * Reset the scroll to the beginning. Used when user change the filer.
+     */
     public void resetState() {
-        this.currentPage = this.startingPageIndex;
-        this.previousTotalItemCount = 0;
-        this.loading = true;
+        mCurrentPage = mStartingPageIndex;
+        mPreviousTotalItemCount = 0;
+        mLoading = true;
     }
 
     public abstract void onLoadMore(int page, int totalItemCount);
 
+    /**
+     * Sets the visibleThreshold for a list
+     *
+     * @param visibleThreshold
+     */
     public void setVisibleThreshold(int visibleThreshold) {
-        this.visibleThreshold = visibleThreshold;
+        mVisibleThreshold = visibleThreshold;
     }
 }

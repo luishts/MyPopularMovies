@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Item
         super.onSaveInstanceState(outState);
         mListState = mLayoutManager.onSaveInstanceState();
         outState.putParcelable(Constants.LIST_STATE_KEY, mListState);
-        outState.putParcelableArrayList(Constants.LIST_VALUES_KEY, mMovieAdapter.getItens());
+        outState.putParcelableArrayList(Constants.LIST_VALUES_KEY, mMovieAdapter.getItems());
     }
 
     @Override
@@ -155,6 +155,11 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Item
         }
     }
 
+    /**
+     * Creates a task that request more movies to server according to current page.
+     *
+     * @param page
+     */
     private void loadMoreMovies(int page) {
         new MoviesTask().execute(mCurrentPath, String.valueOf(++page));
     }
@@ -184,7 +189,10 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Item
             URL moviesUrl = NetworkUtils.buildUrl(type, page);
             try {
                 String jsonMoviesResponse = NetworkUtils.getResponseFromHttpUrl(moviesUrl);
-                return JsonMoviesUtil.getMoviesStringsFromJson(jsonMoviesResponse);
+                if (!"".equalsIgnoreCase(jsonMoviesResponse)) {
+                    return JsonMoviesUtil.getMoviesStringsFromJson(jsonMoviesResponse);
+                }
+                return null;
             } catch (Exception e) {
                 e.printStackTrace();
                 return null;

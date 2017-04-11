@@ -1,7 +1,7 @@
 package com.example.android.mypopularmovies.util;
 
 /**
- * Created by ltorres on 10/04/2017.
+ * This class stores some constant values that are use by the entire application
  */
 
 public class Constants {

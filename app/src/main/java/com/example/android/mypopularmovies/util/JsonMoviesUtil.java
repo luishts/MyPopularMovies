@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by ltorres on 10/04/2017.
+ * This class handles a json string that application receives from movie server and parse/convert it into a Movie list.
  */
 
 public class JsonMoviesUtil {
@@ -30,13 +30,11 @@ public class JsonMoviesUtil {
         for (int i = 0; i < items.length(); i++) {
             movieObj = items.getJSONObject(i);
             Movie movie = new Movie();
-            movie.setId(movieObj.getInt("id"));
             movie.setTitle(movieObj.getString("original_title"));
             movie.setOverview(movieObj.getString("overview"));
-            movie.setPoster_path("http://image.tmdb.org/t/p/w185/" + movieObj.getString("poster_path"));
-            movie.setRelease_date(movieObj.getString("release_date"));
-            movie.setVote_average((float) movieObj.getDouble("vote_average"));
-            movie.setPopularity(movieObj.getDouble("popularity"));
+            movie.setPosterPath("http://image.tmdb.org/t/p/w185/" + movieObj.getString("poster_path"));
+            movie.setReleaseDate(movieObj.getString("release_date"));
+            movie.setVoteAverage((float) movieObj.getDouble("vote_average"));
             parsedMovieData.add(movie);
         }
 

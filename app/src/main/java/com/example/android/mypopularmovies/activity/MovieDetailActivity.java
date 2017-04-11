@@ -13,8 +13,8 @@ import com.squareup.picasso.Picasso;
 
 public class MovieDetailActivity extends AppCompatActivity {
 
-    ImageView mPoster;
-    TextView mTitle, mDate, mVote, mOverview;
+    private ImageView mPoster;
+    private TextView mTitle, mDate, mVote, mOverview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,12 +37,17 @@ public class MovieDetailActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(getString(R.string.detail_title));
     }
 
+    /**
+     * Method that fill all UI fields with the information of selected movie
+     *
+     * @param movie
+     */
     private void initUI(Movie movie) {
         mTitle.setText(movie.getTitle());
-        mDate.setText(movie.getRelease_date());
-        mVote.setText(String.valueOf(movie.getVote_average()));
+        mDate.setText(movie.getReleaseDate());
+        mVote.setText(String.valueOf(movie.getVoteAverage()));
         mOverview.setText(movie.getOverview());
-        Picasso.with(this).load(movie.getPoster_path()).placeholder(R.mipmap.ic_launcher).into(mPoster);
+        Picasso.with(this).load(movie.getPosterPath()).placeholder(R.mipmap.ic_launcher).into(mPoster);
     }
 
     @Override

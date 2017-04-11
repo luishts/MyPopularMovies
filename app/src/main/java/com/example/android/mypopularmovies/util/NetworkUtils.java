@@ -11,7 +11,7 @@ import java.net.URL;
 import java.util.Scanner;
 
 /**
- * Created by ltorres on 10/04/2017.
+ * This class handles the network connection between the app the the movie server. In charge to build the URL and return the input stream.
  */
 
 public class NetworkUtils {
@@ -35,9 +35,16 @@ public class NetworkUtils {
         return url;
     }
 
-    public static String getResponseFromHttpUrl(URL url) throws IOException {
-        HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+    /**
+     * Method that connects to Movie database and return a json response with a list of movies
+     *
+     * @param url - movie db url
+     * @return - server response
+     */
+    public static String getResponseFromHttpUrl(URL url) {
+        HttpURLConnection urlConnection = null;
         try {
+            urlConnection = (HttpURLConnection) url.openConnection();
             InputStream in = urlConnection.getInputStream();
 
             Scanner scanner = new Scanner(in);
@@ -49,8 +56,13 @@ public class NetworkUtils {
             } else {
                 return null;
             }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "";
         } finally {
-            urlConnection.disconnect();
+            if (urlConnection != null) {
+                urlConnection.disconnect();
+            }
         }
     }
 }
