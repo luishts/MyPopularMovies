@@ -34,19 +34,15 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Item
     private static final String TAG = MainActivity.class.getSimpleName();
 
     private Handler mHandler;
-
-    private Parcelable mListState;
-
     private String mCurrentPath;
-
+    private Parcelable mListState;
     private ArrayList<Movie> mData;
 
-    private RecyclerView mRecyclerView;
-    private GridLayoutManager mLayoutManager;
     private ProgressBar mProgressBar;
-    private EndlessRecyclerViewScrollListener mScrollListener;
-
+    private RecyclerView mRecyclerView;
     private MovieAdapter mMovieAdapter;
+    private GridLayoutManager mLayoutManager;
+    private EndlessRecyclerViewScrollListener mScrollListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
