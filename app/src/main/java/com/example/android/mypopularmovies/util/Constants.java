@@ -6,7 +6,7 @@ package com.example.android.mypopularmovies.util;
 
 public class Constants {
 
-    public static int MAX_MOVIES_PER_PAGE = 6;
+    public static final int MAX_MOVIES_PER_PAGE = 6;
 
     public static final long ENDLESS_SCROLL_ANIMATION_TIME = 2000;
 
