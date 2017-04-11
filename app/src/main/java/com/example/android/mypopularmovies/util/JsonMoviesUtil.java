@@ -19,7 +19,6 @@ public class JsonMoviesUtil {
     public static List<Movie> getMoviesStringsFromJson(String moviesJsonStr)
             throws JSONException {
 
-        /* String array to hold each day's weather String */
         List<Movie> parsedMovieData = new ArrayList<>();
 
         JSONObject movieJson = new JSONObject(moviesJsonStr);
