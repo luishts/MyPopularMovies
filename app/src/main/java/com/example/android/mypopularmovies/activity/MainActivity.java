@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Item
         mScrollListener = new EndlessRecyclerViewScrollListener(mLayoutManager) {
             @Override
             public void onLoadMore(final int page, int totalItemCount) {
-                //if totalItemCount < than page*MAX_SALES_PER_PAGE, it means that all sales from db are already loaded
+                //if totalItemCount < than page*MAX_MOVIES_PER_PAGE, it means that all sales from db are already loaded
                 if (totalItemCount < Constants.MAX_MOVIES_PER_PAGE * page) {
                     Log.d(TAG, "all movies are already loaded. totalItemCount = " + totalItemCount + " MAX_MOVIES_PER_PAGE * page = " + (Constants.MAX_MOVIES_PER_PAGE * page));
                     return;
