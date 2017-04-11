@@ -168,6 +168,9 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Item
         startActivity(detailIntent);
     }
 
+    /**
+     * Task that runs at background and connects to movie db server requesting a list of movies according to a given path and page. 'Sends' it to adapter that updates the UI
+     */
     public class MoviesTask extends AsyncTask<String, Void, List<Movie>> {
 
         @Override
