@@ -18,6 +18,13 @@ public class NetworkUtils {
 
     private static final String TAG = NetworkUtils.class.getSimpleName();
 
+    /**
+     * Method that given a user filter (top_rated or popular) and a page index (list view + scroll) builds an urls applying the correct parameters
+     *
+     * @param path - top_rated or popular
+     * @param page - recycler view page index (in this app, each page holds 6 movies)
+     * @return - URL with all parameters set
+     */
     public static URL buildUrl(String path, String page) {
         Uri builtUri = Uri.parse(Constants.MOVIES_BASE_URL).buildUpon()
                 .appendEncodedPath(path)

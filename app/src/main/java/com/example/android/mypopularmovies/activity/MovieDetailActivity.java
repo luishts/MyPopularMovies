@@ -24,8 +24,8 @@ public class MovieDetailActivity extends AppCompatActivity {
         mPoster = (ImageView) findViewById(R.id.poster);
 
         mTitle = (TextView) findViewById(R.id.title);
-        mDate = (TextView) findViewById(R.id.release_date);
-        mVote = (TextView) findViewById(R.id.vote_average);
+        mDate = (TextView) findViewById(R.id.releaseDate);
+        mVote = (TextView) findViewById(R.id.voteAverage);
         mOverview = (TextView) findViewById(R.id.overview);
 
         if (getIntent() != null && getIntent().hasExtra(Constants.MOVIE_KEY)) {
