@@ -60,7 +60,11 @@ public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     private void configureViewHolderMovie(ViewHolderMovie holder, int position) {
         Movie movie = mData.get(position);
         if (movie != null) {
-            Picasso.with(mContext).load(movie.getPosterPath()).placeholder(R.mipmap.ic_launcher).into(holder.poster);
+            Picasso.with(mContext)
+                    .load(movie.getPosterPath())
+                    .placeholder(R.drawable.ic_hourglass_empty_black_48dp)
+                    .error(R.drawable.ic_error_outline_black_48dp)
+                    .into(holder.poster);
         }
     }
 
