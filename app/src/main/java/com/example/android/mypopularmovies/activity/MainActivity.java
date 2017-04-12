@@ -2,7 +2,6 @@ package com.example.android.mypopularmovies.activity;
 
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
@@ -21,15 +20,13 @@ import com.example.android.mypopularmovies.R;
 import com.example.android.mypopularmovies.adapter.EndlessRecyclerViewScrollListener;
 import com.example.android.mypopularmovies.adapter.MovieAdapter;
 import com.example.android.mypopularmovies.model.Movie;
+import com.example.android.mypopularmovies.task.MovieTask;
 import com.example.android.mypopularmovies.util.Constants;
-import com.example.android.mypopularmovies.util.JsonMoviesUtil;
-import com.example.android.mypopularmovies.util.NetworkUtils;
 
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements MovieAdapter.ItemClickListener {
+public class MainActivity extends AppCompatActivity implements MovieAdapter.ItemClickListener, MovieTask.OnMovieTaskCompleted {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
@@ -108,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Item
                     mCurrentPath = Constants.POPULAR_PATH;
                     mMovieAdapter.setData(new ArrayList<Movie>());
                     mScrollListener.resetState();
-                    new MoviesTask().execute(mCurrentPath, "1");
+                    new MovieTask(MainActivity.this).execute(mCurrentPath, "1");
                 }
                 break;
             case R.id.action_top_rated:
@@ -116,7 +113,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Item
                     mCurrentPath = Constants.TOP_RATED_PATH;
                     mMovieAdapter.setData(new ArrayList<Movie>());
                     mScrollListener.resetState();
-                    new MoviesTask().execute(mCurrentPath, "1");
+                    new MovieTask(MainActivity.this).execute(mCurrentPath, "1");
                 }
                 break;
         }
@@ -147,8 +144,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Item
         if (mListState != null) {
             mLayoutManager.onRestoreInstanceState(mListState);
         } else {
-            mProgressBar.setVisibility(View.VISIBLE);
-            new MoviesTask().execute(mCurrentPath, "1");
+            new MovieTask(this).execute(mCurrentPath, "1");
         }
     }
 
@@ -158,7 +154,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Item
      * @param page
      */
     private void loadMoreMovies(int page) {
-        new MoviesTask().execute(mCurrentPath, String.valueOf(++page));
+        new MovieTask(this).execute(mCurrentPath, String.valueOf(++page));
     }
 
     @Override
@@ -169,39 +165,18 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Item
         startActivity(detailIntent);
     }
 
-    /**
-     * Task that runs at background and connects to movie db server requesting a list of movies according to a given path and page. 'Sends' it to adapter that updates the UI
-     */
-    public class MoviesTask extends AsyncTask<String, Void, List<Movie>> {
 
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
+    @Override
+    public void onTaskCreated() {
+        if (mProgressBar != null && !mProgressBar.isShown()) {
+            mProgressBar.setVisibility(View.VISIBLE);
         }
+    }
 
-        @Override
-        protected List<Movie> doInBackground(String... params) {
-            if (params.length == 0) {
-                return null;
-            }
-            String type = params[0];
-            String page = params[1];
-            URL moviesUrl = NetworkUtils.buildUrl(type, page);
-            try {
-                String jsonMoviesResponse = NetworkUtils.getResponseFromHttpUrl(moviesUrl);
-                if (!"".equalsIgnoreCase(jsonMoviesResponse)) {
-                    return JsonMoviesUtil.getMoviesStringsFromJson(jsonMoviesResponse);
-                }
-                return null;
-            } catch (Exception e) {
-                e.printStackTrace();
-                return null;
-            }
-        }
-
-        @Override
-        protected void onPostExecute(List<Movie> movies) {
-            mMovieAdapter.setMoreMovies(movies);
+    @Override
+    public void onTaskCompleted(List<Movie> movies) {
+        mMovieAdapter.setMoreMovies(movies);
+        if (mProgressBar != null && mProgressBar.isShown()) {
             mProgressBar.setVisibility(View.GONE);
         }
     }
