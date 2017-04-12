@@ -16,6 +16,9 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * This is the adapter that is in charge to inflate each movie layout and fill with the information received from the movie server. It also handles
  * click listener and deliver it to MainActivity.
@@ -23,10 +26,10 @@ import java.util.List;
 
 public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private ArrayList<Movie> mData;
     private Context mContext;
-    private ItemClickListener mClickListener;
+    private ArrayList<Movie> mData;
     private int mImageWidth, mImageHeight;
+    private ItemClickListener mClickListener;
 
     public MovieAdapter(Context context, ArrayList<Movie> data) {
         this.mData = data;
@@ -93,19 +96,16 @@ public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     public class ViewHolderMovie extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        public ImageView poster;
+        @BindView(R.id.poster)
+        ImageView poster;
 
         public ViewHolderMovie(View itemView) {
             super(itemView);
-            poster = (ImageView) itemView.findViewById(R.id.poster);
+            ButterKnife.bind(this, itemView);
 
             android.view.ViewGroup.LayoutParams layoutParams = poster.getLayoutParams();
             layoutParams.width = mImageWidth;
             layoutParams.height = mImageHeight;
-            poster.setLayoutParams(new ViewGroup.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT
-            ));
             poster.setLayoutParams(layoutParams);
             itemView.setOnClickListener(this);
         }

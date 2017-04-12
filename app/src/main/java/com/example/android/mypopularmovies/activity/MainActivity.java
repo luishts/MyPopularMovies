@@ -26,6 +26,9 @@ import com.example.android.mypopularmovies.util.Constants;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MainActivity extends AppCompatActivity implements MovieAdapter.ItemClickListener, MovieTask.OnMovieTaskCompleted {
 
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -35,8 +38,11 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Item
     private Parcelable mListState;
     private ArrayList<Movie> mData;
 
-    private ProgressBar mProgressBar;
-    private RecyclerView mRecyclerView;
+    @BindView(R.id.progressBar)
+    ProgressBar mProgressBar;
+    @BindView(R.id.list_movies)
+    RecyclerView mRecyclerView;
+
     private MovieAdapter mMovieAdapter;
     private GridLayoutManager mLayoutManager;
     private EndlessRecyclerViewScrollListener mScrollListener;
@@ -45,13 +51,12 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Item
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
 
         mHandler = new Handler();
-
         mData = new ArrayList<>();
-        mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
+
         DrawableCompat.setTint(mProgressBar.getIndeterminateDrawable(), ContextCompat.getColor(this, R.color.colorAccent));
-        mRecyclerView = (RecyclerView) findViewById(R.id.list_movies);
 
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
             mLayoutManager = new GridLayoutManager(this, 2);
@@ -60,8 +65,6 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Item
         }
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setHasFixedSize(true);
-        //mRecyclerView.getLayoutManager().setAutoMeasureEnabled(true);
-
         mScrollListener = new EndlessRecyclerViewScrollListener(mLayoutManager) {
             @Override
             public void onLoadMore(final int page, int totalItemCount) {
