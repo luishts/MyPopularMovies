@@ -9,6 +9,7 @@ import android.os.Parcelable;
 
 public class Movie implements Parcelable {
 
+    private long id;
     private String title;
     private String releaseDate;
     private String posterPath;
@@ -17,6 +18,14 @@ public class Movie implements Parcelable {
 
     public Movie() {
 
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getTitle() {
