@@ -26,7 +26,7 @@ public class Constants {
 
     public static final String TOP_RATED_PATH = "movie/top_rated";
 
-    public static final String TRAILER_BASE_PATH = "movie";
+    public static final String API_BASE_PATH = "movie";
 
     public static final String TRAILER_PATH = "videos";
 

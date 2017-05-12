@@ -44,9 +44,27 @@ public class NetworkUtils {
 
     public static URL buildTrailerUrl(String path) {
         Uri builtUri = Uri.parse(Constants.MOVIES_BASE_URL).buildUpon()
-                .appendEncodedPath(Constants.TRAILER_BASE_PATH)
+                .appendEncodedPath(Constants.API_BASE_PATH)
                 .appendEncodedPath(path)
                 .appendEncodedPath(Constants.TRAILER_PATH)
+                .appendQueryParameter(Constants.API_PARAM, Constants.API_KEY).build();
+        URL url = null;
+        try {
+            url = new URL(builtUri.toString());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+        Log.d(TAG, "Built URI " + url);
+
+        return url;
+    }
+
+    public static URL buildReviewUrl(String path) {
+        Uri builtUri = Uri.parse(Constants.MOVIES_BASE_URL).buildUpon()
+                .appendEncodedPath(Constants.API_BASE_PATH)
+                .appendEncodedPath(path)
+                .appendEncodedPath(Constants.REVIEWS_PATH)
                 .appendQueryParameter(Constants.API_PARAM, Constants.API_KEY).build();
         URL url = null;
         try {

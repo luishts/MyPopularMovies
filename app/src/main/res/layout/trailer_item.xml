@@ -3,6 +3,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:foreground="?android:attr/selectableItemBackground"
+    android:layout_marginRight="8dp"
     android:orientation="horizontal">
 
     <ImageView
@@ -10,8 +11,8 @@
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_centerVertical="true"
-        android:src="@drawable/ic_videocam_white_48dp"
-        android:tint="@color/colorAccent" />
+        android:src="@drawable/ic_play_circle_filled_white_48dp"
+        android:tint="@color/trailer_tint" />
 
     <TextView
         android:id="@+id/trailer_text"
@@ -20,7 +21,7 @@
         android:layout_gravity="center_vertical"
         android:ellipsize="end"
         android:maxLines="1"
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/trailer_tint"
         android:textSize="12sp" />
 
 </LinearLayout>

@@ -14,10 +14,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.android.mypopularmovies.R;
+import com.example.android.mypopularmovies.adapter.ReviewAdapter;
 import com.example.android.mypopularmovies.adapter.TrailerAdapter;
 import com.example.android.mypopularmovies.data.MovieContract;
 import com.example.android.mypopularmovies.model.Movie;
+import com.example.android.mypopularmovies.model.Review;
 import com.example.android.mypopularmovies.model.Trailer;
+import com.example.android.mypopularmovies.task.ReviewTask;
 import com.example.android.mypopularmovies.task.TrailerTask;
 import com.example.android.mypopularmovies.util.Constants;
 import com.squareup.picasso.Picasso;
@@ -27,7 +30,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MovieDetailActivity extends AppCompatActivity implements View.OnClickListener, TrailerTask.OnTrailerTaskCompleted {
+public class MovieDetailActivity extends AppCompatActivity implements View.OnClickListener, TrailerTask.OnTrailerTaskCompleted, ReviewTask.OnReviewTaskCompleted {
 
     @BindView(R.id.poster)
     ImageView mPoster;
@@ -46,10 +49,17 @@ public class MovieDetailActivity extends AppCompatActivity implements View.OnCli
     @BindView(R.id.stub)
     ViewStub emptyView;
 
+    @BindView(R.id.review_list)
+    CustomList mReviewView;
+    @BindView(R.id.stub2)
+    ViewStub emptyReview;
+
     private boolean mIsFavorite;
     private Movie mSelectedVideo;
     private TrailerAdapter mTrailerAdapter;
+    private ReviewAdapter mReviewAdapter;
     private List<Trailer> mTrailerList;
+    private List<Review> mReviewList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,12 +73,24 @@ public class MovieDetailActivity extends AppCompatActivity implements View.OnCli
 
         emptyView.setLayoutResource(R.layout.empty_view);
         mRecyclerView.setEmptyView(emptyView);
+
         mTrailerAdapter = new TrailerAdapter(this, mTrailerList);
         mRecyclerView.setAdapter(mTrailerAdapter);
+
+        mReviewView.setHasFixedSize(true);
+        mReviewView.setLayoutManager(new LinearLayoutManager(this));
+        mReviewView.getLayoutManager().setAutoMeasureEnabled(true);
+
+        emptyReview.setLayoutResource(R.layout.empty_review);
+        mReviewView.setEmptyView(emptyReview);
+
+        mReviewAdapter = new ReviewAdapter(this, mReviewList);
+        mReviewView.setAdapter(mReviewAdapter);
 
         if (getIntent() != null && getIntent().hasExtra(Constants.MOVIE_KEY)) {
             mSelectedVideo = getIntent().getParcelableExtra(Constants.MOVIE_KEY);
             new TrailerTask(this).execute(mSelectedVideo.getId());
+            new ReviewTask(this).execute(mSelectedVideo.getId());
             initUI();
         }
 
@@ -138,7 +160,7 @@ public class MovieDetailActivity extends AppCompatActivity implements View.OnCli
 
     private void updateFavoriteIcon() {
         if (mIsFavorite) {
-            mIsFavorite = true;
+            mFavoriteButton.setImageResource(R.drawable.ic_favorite_white_48dp);
         } else {
             mFavoriteButton.setImageResource(R.drawable.ic_favorite_border_white_48dp);
         }
@@ -146,7 +168,12 @@ public class MovieDetailActivity extends AppCompatActivity implements View.OnCli
 
     @Override
     public void onTaskCreated() {
+    }
 
+    @Override
+    public void onReviewTaskCompleted(List<Review> reviewList) {
+        mReviewList = reviewList;
+        mReviewAdapter.setData(reviewList);
     }
 
     @Override

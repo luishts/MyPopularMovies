@@ -1,0 +1,64 @@
+package com.example.android.mypopularmovies.adapter;
+
+import android.app.Activity;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+import com.example.android.mypopularmovies.R;
+import com.example.android.mypopularmovies.model.Review;
+
+import java.lang.ref.WeakReference;
+import java.util.ArrayList;
+import java.util.List;
+
+public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolderReview> {
+
+    private WeakReference<Activity> mContext;
+    private List<Review> mReviewList;
+
+    public ReviewAdapter(Activity mContext, List<Review> reviewList) {
+        this.mContext = new WeakReference<>(mContext);
+        setData(reviewList);
+    }
+
+    @Override
+    public ViewHolderReview onCreateViewHolder(ViewGroup parent, int viewType) {
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        return new ViewHolderReview(inflater.inflate(R.layout.review_item, parent, false));
+    }
+
+    @Override
+    public void onBindViewHolder(final ViewHolderReview viewHolder, int position) {
+        Review review = mReviewList.get(position);
+        if (review != null) {
+            viewHolder.reviewAuthor.setText(review.getAuthor());
+            viewHolder.reviewContent.setText(review.getContent());
+        }
+    }
+
+    @Override
+    public int getItemCount() {
+        return (mReviewList != null) ? mReviewList.size() : 0;
+    }
+
+    public class ViewHolderReview extends RecyclerView.ViewHolder {
+
+        TextView reviewAuthor, reviewContent;
+
+        public ViewHolderReview(View itemView) {
+            super(itemView);
+            reviewAuthor = (TextView) itemView.findViewById(R.id.review_author);
+            reviewContent = (TextView) itemView.findViewById(R.id.review_content);
+        }
+    }
+
+    public void setData(List<Review> reviewList) {
+        if (reviewList != null) {
+            mReviewList = new ArrayList<>(reviewList);
+            notifyDataSetChanged();
+        }
+    }
+}

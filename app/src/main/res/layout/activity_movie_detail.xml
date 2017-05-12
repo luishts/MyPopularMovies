@@ -124,7 +124,9 @@
         <com.example.android.mypopularmovies.activity.CustomList
             android:id="@+id/trailer_list"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             android:layout_below="@id/divider"
             android:scrollbars="horizontal" />
 
@@ -132,8 +134,33 @@
             android:id="@+id/stub"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/divider"
             android:layout_gravity="center"
-            android:visibility="gone"/>
+            android:visibility="gone" />
+
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/trailer_list"
+            android:background="@color/white" />
+
+        <com.example.android.mypopularmovies.activity.CustomList
+            android:id="@+id/review_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_below="@id/divider2"
+            android:scrollbars="vertical" />
+
+        <ViewStub
+            android:id="@+id/stub2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/divider2"
+            android:layout_gravity="center"
+            android:visibility="gone" />
 
     </RelativeLayout>
 </ScrollView>
