@@ -31,6 +31,7 @@ public class JsonMoviesUtil {
             for (int i = 0; i < items.length(); i++) {
                 movieObj = items.getJSONObject(i);
                 Movie movie = new Movie();
+                movie.setId(Long.parseLong(movieObj.getString("id")));
                 movie.setTitle(movieObj.getString("original_title"));
                 movie.setOverview(movieObj.getString("overview"));
                 movie.setPosterPath("http://image.tmdb.org/t/p/w185/" + movieObj.getString("poster_path"));

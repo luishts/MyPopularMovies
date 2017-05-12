@@ -26,6 +26,14 @@ public class Constants {
 
     public static final String TOP_RATED_PATH = "movie/top_rated";
 
+    public static final String TRAILER_BASE_PATH = "movie";
+
+    public static final String TRAILER_PATH = "videos";
+
+    public static final String YOUTUBE_BASE_PATH = "https://www.youtube.com/watch?v=";
+
+    public static final String REVIEWS_PATH = "reviews";
+
     public static final String LIST_STATE_KEY = "list_key";
 
     public static final String LIST_VALUES_KEY = "list_values";

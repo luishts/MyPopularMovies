@@ -42,6 +42,33 @@ public class NetworkUtils {
         return url;
     }
 
+    public static URL buildTrailerUrl(String path) {
+        Uri builtUri = Uri.parse(Constants.MOVIES_BASE_URL).buildUpon()
+                .appendEncodedPath(Constants.TRAILER_BASE_PATH)
+                .appendEncodedPath(path)
+                .appendEncodedPath(Constants.TRAILER_PATH)
+                .appendQueryParameter(Constants.API_PARAM, Constants.API_KEY).build();
+        URL url = null;
+        try {
+            url = new URL(builtUri.toString());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+        Log.d(TAG, "Built URI " + url);
+
+        return url;
+    }
+
+    public static Uri buildYoutubeUri(String path) {
+        Uri builtUri = Uri.parse(Constants.YOUTUBE_BASE_PATH).buildUpon()
+                .appendEncodedPath(path).build();
+
+        Log.d(TAG, "Built Uri builtUri " + builtUri);
+
+        return builtUri;
+    }
+
     /**
      * Method that connects to Movie database and return a json response with a list of movies
      *

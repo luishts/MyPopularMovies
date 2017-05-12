@@ -130,7 +130,7 @@ public class MyPopularProvider extends ContentProvider {
                 break;
             case CODE_MOVIE_WITH_ID:
                 long id = ContentUris.parseId(uri);
-                selection = String.format("%s = ?", MovieContract.MovieEntry._ID);
+                selection = String.format("%s = ?", MovieContract.MovieEntry.COLUMN_MOVIE_ID);
                 selectionArgs = new String[]{String.valueOf(id)};
                 break;
             default:
