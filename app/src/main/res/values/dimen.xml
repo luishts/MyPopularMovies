@@ -11,7 +11,7 @@
     <dimen name="star_width">24dp</dimen>
 
     <dimen name="title_size">22dp</dimen>
-    <dimen name="overview_size">24sp</dimen>
+    <dimen name="overview_size">18sp</dimen>
     <dimen name="vote_size">20dp</dimen>
     <dimen name="date_size">20dp</dimen>
 </resources>

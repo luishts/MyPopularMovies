@@ -14,6 +14,9 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This is the adapter that is in charge to inflate each review layout and fill with the information received from the movie server.
+ */
 public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolderReview> {
 
     private WeakReference<Activity> mContext;

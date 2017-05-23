@@ -6,7 +6,6 @@ import android.os.Parcelable;
 /**
  * This class represents a Movie entity with all the fields that we need to show in the UI
  */
-
 public class Movie implements Parcelable {
 
     private long id;

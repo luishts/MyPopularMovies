@@ -3,7 +3,6 @@ package com.example.android.mypopularmovies.model;
 /**
  * This class represents a Review entity with all the fields that we need to show in the UI
  */
-
 public class Review {
 
     private String author;

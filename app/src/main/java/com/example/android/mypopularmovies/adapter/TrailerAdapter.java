@@ -17,6 +17,10 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This is the adapter that is in charge to inflate each trailer layout and fill with the information received from the movie server. It also handles
+ * click listener and deliver it to Youtube.
+ */
 public class TrailerAdapter extends RecyclerView.Adapter<TrailerAdapter.ViewHolderTrailer> {
 
     private WeakReference<Activity> mContext;
@@ -62,6 +66,7 @@ public class TrailerAdapter extends RecyclerView.Adapter<TrailerAdapter.ViewHold
         public void onClick(View v) {
             Trailer trailer = mTrailerList.get(getAdapterPosition());
             if (trailer != null) {
+                //redirect user to youtube given a traibler path
                 Intent intent = new Intent(Intent.ACTION_VIEW, NetworkUtils.buildYoutubeUri(trailer.getPath()));
                 mContext.get().startActivity(intent);
             }

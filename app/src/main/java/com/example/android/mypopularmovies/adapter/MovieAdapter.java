@@ -23,7 +23,6 @@ import butterknife.ButterKnife;
  * This is the adapter that is in charge to inflate each movie layout and fill with the information received from the movie server. It also handles
  * click listener and deliver it to MainActivity.
  */
-
 public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private Context mContext;

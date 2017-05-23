@@ -2,6 +2,7 @@ package com.example.android.mypopularmovies.activity;
 
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
@@ -19,6 +20,7 @@ import android.widget.ProgressBar;
 import com.example.android.mypopularmovies.R;
 import com.example.android.mypopularmovies.adapter.EndlessRecyclerViewScrollListener;
 import com.example.android.mypopularmovies.adapter.MovieAdapter;
+import com.example.android.mypopularmovies.data.MovieContract;
 import com.example.android.mypopularmovies.model.Movie;
 import com.example.android.mypopularmovies.task.MovieTask;
 import com.example.android.mypopularmovies.util.Constants;
@@ -117,6 +119,31 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Item
                     mMovieAdapter.setData(new ArrayList<Movie>());
                     mScrollListener.resetState();
                     new MovieTask(MainActivity.this).execute(mCurrentPath, "1");
+                }
+            case R.id.action_favourite:
+                if (!mCurrentPath.equalsIgnoreCase(Constants.FAVOURITE_PATH)) {
+                    mCurrentPath = Constants.FAVOURITE_PATH;
+                    if (mData == null) {
+                        mData = new ArrayList<>();
+                    } else {
+                        mData.clear();
+                    }
+
+                    //query movie content provider for all favourites movies
+                    Cursor cursor = getContentResolver().query(MovieContract.MovieEntry.CONTENT_URI, null, null, null, MovieContract.MovieEntry.COLUMN_TITLE);
+                    while (cursor.moveToNext()) {
+                        Movie movie = new Movie();
+                        movie.setId(cursor.getLong(cursor.getColumnIndex(MovieContract.MovieEntry.COLUMN_MOVIE_ID)));
+                        movie.setTitle(cursor.getString(cursor.getColumnIndex(MovieContract.MovieEntry.COLUMN_TITLE)));
+                        movie.setReleaseDate(cursor.getString(cursor.getColumnIndex(MovieContract.MovieEntry.COLUMN_DATE)));
+                        movie.setOverview(cursor.getString(cursor.getColumnIndex(MovieContract.MovieEntry.COLUMN_OVERVIEW)));
+                        movie.setPosterPath(cursor.getString(cursor.getColumnIndex(MovieContract.MovieEntry.COLUMN_POSTER)));
+                        movie.setVoteAverage(cursor.getFloat(cursor.getColumnIndex(MovieContract.MovieEntry.COLUMN_VOTE)));
+                        mData.add(movie);
+                    }
+                    if (mMovieAdapter != null) {
+                        mMovieAdapter.setMoreMovies(mData);
+                    }
                 }
                 break;
         }

@@ -133,9 +133,14 @@ public class MovieDetailActivity extends AppCompatActivity implements View.OnCli
         switch (v.getId()) {
             case R.id.favorite_button:
                 if (!mIsFavorite) {
+                    //save movie info to database
                     ContentValues values = new ContentValues();
                     values.put(MovieContract.MovieEntry.COLUMN_MOVIE_ID, mSelectedVideo.getId());
                     values.put(MovieContract.MovieEntry.COLUMN_TITLE, mSelectedVideo.getTitle());
+                    values.put(MovieContract.MovieEntry.COLUMN_DATE, mSelectedVideo.getReleaseDate());
+                    values.put(MovieContract.MovieEntry.COLUMN_OVERVIEW, mSelectedVideo.getOverview());
+                    values.put(MovieContract.MovieEntry.COLUMN_VOTE, mSelectedVideo.getVoteAverage());
+                    values.put(MovieContract.MovieEntry.COLUMN_POSTER, mSelectedVideo.getPosterPath());
                     Uri uri = getContentResolver().insert(MovieContract.MovieEntry.CONTENT_URI, values);
                     if (uri != null) {
                         Toast.makeText(getApplicationContext(), "Movie added to favourites", Toast.LENGTH_SHORT).show();
@@ -145,6 +150,7 @@ public class MovieDetailActivity extends AppCompatActivity implements View.OnCli
                         Toast.makeText(getApplicationContext(), "Try again", Toast.LENGTH_SHORT).show();
                     }
                 } else {
+                    //remove favourite movie from database
                     int rowsDeleted = getContentResolver().delete(MovieContract.MovieEntry.buildMovieUriWithId(mSelectedVideo.getId()), null, null);
                     if (rowsDeleted > 0) {
                         Toast.makeText(getApplicationContext(), "Movie removed from favourites", Toast.LENGTH_SHORT).show();
@@ -158,6 +164,9 @@ public class MovieDetailActivity extends AppCompatActivity implements View.OnCli
         }
     }
 
+    /**
+     * Method that update favorite icon according to user choices (favourite or not)
+     */
     private void updateFavoriteIcon() {
         if (mIsFavorite) {
             mFavoriteButton.setImageResource(R.drawable.ic_favorite_white_48dp);

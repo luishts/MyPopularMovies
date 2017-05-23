@@ -95,7 +95,7 @@
             android:layout_alignLeft="@id/linear_score"
             android:layout_alignParentRight="true"
             android:layout_below="@id/linear_score"
-            android:gravity="center">
+            android:gravity="right">
 
             <ImageView
                 android:id="@+id/favorite_button"
@@ -125,9 +125,9 @@
             android:id="@+id/trailer_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
             android:layout_below="@id/divider"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
             android:scrollbars="horizontal" />
 
         <ViewStub
@@ -149,9 +149,9 @@
             android:id="@+id/review_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
             android:layout_below="@id/divider2"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
             android:scrollbars="vertical" />
 
         <ViewStub

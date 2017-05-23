@@ -1,25 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginBottom="8dp"
-    android:foreground="?android:attr/selectableItemBackground"
-    android:orientation="vertical">
+    android:background="@color/colorPrimary"
+    android:foreground="?android:attr/selectableItemBackground">
+
+    <ImageView
+        android:id="@+id/avatar"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginRight="8dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_account_circle_white_24dp" />
 
     <TextView
         android:id="@+id/review_author"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
+        android:layout_toRightOf="@id/avatar"
         android:text="adandandausdasdnad"
-        android:textSize="14sp" />
+
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/review_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/review_author"
         android:layout_gravity="center_vertical"
+        android:layout_toRightOf="@id/avatar"
         android:text="uadjausdhuadhaudha"
+        android:textColor="@color/white"
         android:textSize="12sp" />
 
-</LinearLayout>
+</RelativeLayout>

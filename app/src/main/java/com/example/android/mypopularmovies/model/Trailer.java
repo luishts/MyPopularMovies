@@ -1,9 +1,8 @@
 package com.example.android.mypopularmovies.model;
 
 /**
- * This class represents a Movie entity with all the fields that we need to show in the UI
+ * This class represents a Trailer entity
  */
-
 public class Trailer {
 
     private String name;

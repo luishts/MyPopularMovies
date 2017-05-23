@@ -2,6 +2,7 @@
     <string name="app_name">MyPopularMovies</string>
     <string name="action_popular">Popular</string>
     <string name="action_top_rated">Top Rated</string>
+    <string name="action_favourite">Favourites</string>
     <string name="adult_yes">Yes</string>
     <string name="adult_no">No</string>
     <string name="detail_title">Movie Details</string>

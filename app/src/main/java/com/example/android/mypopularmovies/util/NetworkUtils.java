@@ -42,6 +42,12 @@ public class NetworkUtils {
         return url;
     }
 
+    /**
+     * Method that given a trailer path builds an urls
+     *
+     * @param path - trailer path
+     * @return - URL with all parameters set
+     */
     public static URL buildTrailerUrl(String path) {
         Uri builtUri = Uri.parse(Constants.MOVIES_BASE_URL).buildUpon()
                 .appendEncodedPath(Constants.API_BASE_PATH)
@@ -60,6 +66,12 @@ public class NetworkUtils {
         return url;
     }
 
+    /**
+     * Method that given a movie path builds a review url
+     *
+     * @param path - trailer path
+     * @return - URL with all parameters set
+     */
     public static URL buildReviewUrl(String path) {
         Uri builtUri = Uri.parse(Constants.MOVIES_BASE_URL).buildUpon()
                 .appendEncodedPath(Constants.API_BASE_PATH)
@@ -78,6 +90,12 @@ public class NetworkUtils {
         return url;
     }
 
+    /**
+     * Method that given a trailer path builds a youtube Uri url
+     *
+     * @param path - trailer path
+     * @return - URL with all parameters set
+     */
     public static Uri buildYoutubeUri(String path) {
         Uri builtUri = Uri.parse(Constants.YOUTUBE_BASE_PATH).buildUpon()
                 .appendEncodedPath(path).build();

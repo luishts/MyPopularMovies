@@ -10,7 +10,7 @@ import java.net.URL;
 import java.util.List;
 
 /**
- * Task that runs at background and connects to movie db server requesting a list of trailer related to a video id. 'Sends' it observer that updates the UI
+ * Task that runs at background and connects to movie db server requesting a list of trailer related to a video id.
  */
 public class TrailerTask extends AsyncTask<Long, Void, List<Trailer>> {
 
