@@ -143,21 +143,21 @@ public class MovieDetailActivity extends AppCompatActivity implements View.OnCli
                     values.put(MovieContract.MovieEntry.COLUMN_POSTER, mSelectedVideo.getPosterPath());
                     Uri uri = getContentResolver().insert(MovieContract.MovieEntry.CONTENT_URI, values);
                     if (uri != null) {
-                        Toast.makeText(getApplicationContext(), "Movie added to favourites", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), getString(R.string.movie_added_favourites), Toast.LENGTH_SHORT).show();
                         mIsFavorite = true;
                         updateFavoriteIcon();
                     } else {
-                        Toast.makeText(getApplicationContext(), "Try again", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), getString(R.string.movie_error), Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     //remove favourite movie from database
                     int rowsDeleted = getContentResolver().delete(MovieContract.MovieEntry.buildMovieUriWithId(mSelectedVideo.getId()), null, null);
                     if (rowsDeleted > 0) {
-                        Toast.makeText(getApplicationContext(), "Movie removed from favourites", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), getString(R.string.movie_removed_favourites), Toast.LENGTH_SHORT).show();
                         mIsFavorite = false;
                         updateFavoriteIcon();
                     } else {
-                        Toast.makeText(getApplicationContext(), "Try again", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), getString(R.string.movie_error), Toast.LENGTH_SHORT).show();
                     }
                 }
                 break;

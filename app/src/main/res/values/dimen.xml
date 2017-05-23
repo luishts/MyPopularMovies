@@ -3,15 +3,27 @@
     <dimen name="min_padding">8dp</dimen>
     <dimen name="min_margin">8dp</dimen>
     <dimen name="title_margin">24dp</dimen>
-
     <dimen name="poster_height">200dp</dimen>
     <dimen name="poster_width">150dp</dimen>
-
     <dimen name="star_height">24dp</dimen>
     <dimen name="star_width">24dp</dimen>
-
     <dimen name="title_size">22dp</dimen>
     <dimen name="overview_size">18sp</dimen>
     <dimen name="vote_size">20dp</dimen>
     <dimen name="date_size">20dp</dimen>
+    <dimen name="empty_text_size">18sp</dimen>
+    <dimen name="margin_trailer_view">8dp</dimen>
+    <dimen name="margin_review_view">8dp</dimen>
+    <dimen name="divider_height">1dp</dimen>
+    <dimen name="favourite_button_size">36dp</dimen>
+    <dimen name="review_avatar_size">36dp</dimen>
+    <dimen name="review_avatar_margin">8dp</dimen>
+    <dimen name="review_author_text_size">14sp</dimen>
+    <dimen name="review_content_text_size">12sp</dimen>
+    <dimen name="trailer_button_size">36dp</dimen>
+    <dimen name="trailer_text_size">12sp</dimen>
+    <dimen name="trailer_padding_bottom">16dp</dimen>
+    <dimen name="trailer_padding_top">8dp</dimen>
+    <dimen name="trailer_margin_right">8dp</dimen>
+    <dimen name="trailer_width">150dp</dimen>
 </resources>

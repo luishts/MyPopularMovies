@@ -7,5 +7,10 @@
     <string name="adult_no">No</string>
     <string name="detail_title">Movie Details</string>
     <string name="main_title">The Movie DB</string>
-
+    <string name="empty_movies">No movies available</string>
+    <string name="empty_trailers">No trailers available</string>
+    <string name="empty_reviews">No Reviews Available</string>
+    <string name="movie_added_favourites">Movie added to favourites</string>
+    <string name="movie_error">Try again</string>
+    <string name="movie_removed_favourites">Movie removed from favourites</string>
 </resources>

@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:gravity="center"
-        android:text="No Trailers Available"
+        android:text="@string/empty_trailers"
         android:textColor="@color/colorAccent"
-        android:textSize="18sp" />
+        android:textSize="@dimen/empty_text_size" />
 </RelativeLayout>

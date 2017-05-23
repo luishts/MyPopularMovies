@@ -17,6 +17,9 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * This is the adapter that is in charge to inflate each trailer layout and fill with the information received from the movie server. It also handles
  * click listener and deliver it to Youtube.
@@ -52,13 +55,14 @@ public class TrailerAdapter extends RecyclerView.Adapter<TrailerAdapter.ViewHold
 
     public class ViewHolderTrailer extends RecyclerView.ViewHolder implements View.OnClickListener {
 
+        @BindView(R.id.trailer_img)
         ImageView trailerImg;
+        @BindView(R.id.trailer_text)
         TextView trailerText;
 
         public ViewHolderTrailer(View itemView) {
             super(itemView);
-            trailerImg = (ImageView) itemView.findViewById(R.id.trailer_img);
-            trailerText = (TextView) itemView.findViewById(R.id.trailer_text);
+            ButterKnife.bind(this, itemView);
             trailerImg.setOnClickListener(this);
         }
 

@@ -10,11 +10,11 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewStub;
 import android.widget.ProgressBar;
 
 import com.example.android.mypopularmovies.R;
@@ -43,7 +43,9 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Item
     @BindView(R.id.progressBar)
     ProgressBar mProgressBar;
     @BindView(R.id.list_movies)
-    RecyclerView mRecyclerView;
+    CustomList mRecyclerView;
+    @BindView(R.id.stub)
+    ViewStub emptyView;
 
     private MovieAdapter mMovieAdapter;
     private GridLayoutManager mLayoutManager;
@@ -65,8 +67,11 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Item
         } else {
             mLayoutManager = new GridLayoutManager(this, 2);
         }
-        mRecyclerView.setLayoutManager(mLayoutManager);
+
+        emptyView.setLayoutResource(R.layout.empty_movies);
+        mRecyclerView.setEmptyView(emptyView);
         mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setLayoutManager(mLayoutManager);
         mScrollListener = new EndlessRecyclerViewScrollListener(mLayoutManager) {
             @Override
             public void onLoadMore(final int page, int totalItemCount) {
@@ -142,7 +147,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Item
                         mData.add(movie);
                     }
                     if (mMovieAdapter != null) {
-                        mMovieAdapter.setMoreMovies(mData);
+                        mMovieAdapter.setData(mData);
                     }
                 }
                 break;

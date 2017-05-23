@@ -99,8 +99,8 @@
 
             <ImageView
                 android:id="@+id/favorite_button"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
+                android:layout_width="@dimen/favourite_button_size"
+                android:layout_height="@dimen/favourite_button_size"
                 android:src="@drawable/ic_favorite_border_white_48dp" />
         </LinearLayout>
 
@@ -117,7 +117,7 @@
         <View
             android:id="@+id/divider"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="@dimen/divider_height"
             android:layout_below="@id/overview"
             android:background="@color/white" />
 
@@ -126,8 +126,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/divider"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginBottom="@dimen/margin_trailer_view"
+            android:layout_marginTop="@dimen/margin_trailer_view"
             android:scrollbars="horizontal" />
 
         <ViewStub
@@ -141,7 +141,7 @@
         <View
             android:id="@+id/divider2"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="@dimen/divider_height"
             android:layout_below="@id/trailer_list"
             android:background="@color/white" />
 
@@ -150,8 +150,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/divider2"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginBottom="@dimen/margin_review_view"
+            android:layout_marginTop="@dimen/margin_review_view"
             android:scrollbars="vertical" />
 
         <ViewStub
