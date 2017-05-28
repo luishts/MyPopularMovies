@@ -31,22 +31,11 @@
             android:textSize="@dimen/title_size" />
 
         <TextView
-            android:id="@+id/release_date_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/title"
-            android:layout_toRightOf="@+id/poster"
-            android:textColor="@color/white"
-            android:textSize="@dimen/date_size" />
-
-
-        <TextView
             android:id="@+id/releaseDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_below="@+id/title"
-            android:layout_toRightOf="@+id/release_date_label"
             android:gravity="right"
             android:textColor="@color/white"
             android:textSize="@dimen/date_size" />

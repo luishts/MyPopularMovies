@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 /**
- * Created by ltorres on 11/05/2017.
+ * Database of application in charge to save all the information about favourite movies.
  */
 
 public class MovieDbHelper extends SQLiteOpenHelper {

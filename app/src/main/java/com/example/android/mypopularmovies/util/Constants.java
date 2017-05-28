@@ -12,7 +12,7 @@ public class Constants {
 
     public static final String MOVIE_KEY = "movie";
 
-    public static String API_KEY = "1804c232904b982b461afce1f34eb2fc";
+    public static String API_KEY = "";
 
     public static final String STATIC_MOVIES_URL = "https://api.themoviedb.org/3";
 

@@ -11,13 +11,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This class handles a json string that application receives from movie server and parse/convert it into a Movie list.
+ * This class handles a json string that application receives from movie server and parse/convert it into a Trailer list.
  */
 
 public class JsonTrailerUtil {
 
     /**
-     * Method that given a json string parses it into a movie list
+     * Method that given a json string parses it into a trailer list
      *
      * @param trailersJsonStr - json string received from movie server
      * @return - trailer list

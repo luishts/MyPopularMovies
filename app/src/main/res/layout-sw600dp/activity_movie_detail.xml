@@ -14,40 +14,38 @@
             android:id="@+id/poster"
             android:layout_width="@dimen/poster_width"
             android:layout_height="@dimen/poster_height"
+            android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/min_margin" />
 
         <TextView
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/poster"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="@dimen/title_margin"
-            android:layout_marginLeft="@dimen/min_margin"
-            android:layout_marginRight="@dimen/min_margin"
             android:layout_marginTop="@dimen/min_margin"
-            android:layout_toRightOf="@+id/poster"
             android:gravity="center"
             android:textColor="@color/white"
             android:textSize="@dimen/title_size" />
 
         <TextView
-            android:id="@+id/release_date_label"
+            android:id="@+id/overview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/title"
-            android:layout_toRightOf="@+id/poster"
+            android:layout_marginBottom="@dimen/min_margin"
+            android:paddingTop="@dimen/min_padding"
             android:textColor="@color/white"
-            android:textSize="@dimen/date_size" />
-
+            android:textSize="@dimen/overview_size" />
 
         <TextView
             android:id="@+id/releaseDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_below="@+id/title"
-            android:layout_toRightOf="@+id/release_date_label"
-            android:gravity="right"
+            android:layout_below="@+id/overview"
+            android:text="asdasdad"
             android:textColor="@color/white"
             android:textSize="@dimen/date_size" />
 
@@ -104,21 +102,11 @@
                 android:src="@drawable/ic_favorite_border_white_48dp" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/overview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/poster"
-            android:layout_marginBottom="@dimen/min_margin"
-            android:paddingTop="@dimen/min_padding"
-            android:textColor="@color/white"
-            android:textSize="@dimen/overview_size" />
-
         <View
             android:id="@+id/divider"
             android:layout_width="match_parent"
             android:layout_height="@dimen/divider_height"
-            android:layout_below="@id/overview"
+            android:layout_below="@id/linear_favorite"
             android:background="@color/white" />
 
         <com.example.android.mypopularmovies.activity.CustomList

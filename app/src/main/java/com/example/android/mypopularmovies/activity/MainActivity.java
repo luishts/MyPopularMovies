@@ -125,6 +125,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Item
                     mScrollListener.resetState();
                     new MovieTask(MainActivity.this).execute(mCurrentPath, "1");
                 }
+                break;
             case R.id.action_favourite:
                 if (!mCurrentPath.equalsIgnoreCase(Constants.FAVOURITE_PATH)) {
                     mCurrentPath = Constants.FAVOURITE_PATH;

@@ -11,7 +11,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 /**
- * Created by ltorres on 11/05/2017.
+ * Application provider that handles Movie's action query, insert and remove (CRUD)
  */
 
 public class MyPopularProvider extends ContentProvider {
